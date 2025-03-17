@@ -8,6 +8,7 @@ import { AppContextProvider } from "./context/AppContext.jsx";
 import { NotificationContextProvider } from "./context/NotificationContext.jsx";
 import { SocketContextProvider } from "./context/SocketContext.jsx";
 import { UserContextProvider } from "./context/UserContext.jsx";
+import { ChatContextProvider } from "./context/ChatContext.jsx";
 
 const queryClient = new QueryClient();
 
@@ -17,11 +18,13 @@ createRoot(document.getElementById("root")).render(
       <SocketContextProvider>
         <NotificationContextProvider>
           <UserContextProvider>
-            <BrowserRouter>
-              <ChakraProvider>
-                <App />
-              </ChakraProvider>
-            </BrowserRouter>
+            <ChatContextProvider>
+              <BrowserRouter>
+                <ChakraProvider>
+                  <App />
+                </ChakraProvider>
+              </BrowserRouter>
+            </ChatContextProvider>
           </UserContextProvider>
         </NotificationContextProvider>
       </SocketContextProvider>

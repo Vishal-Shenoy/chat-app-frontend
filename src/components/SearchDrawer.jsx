@@ -1,4 +1,4 @@
-import React, { useContext, useState ,useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Drawer,
   DrawerBody,
@@ -10,63 +10,97 @@ import {
   useDisclosure,
   Input,
   Flex,
+  background,
+  Text,
+  Image,
 } from "@chakra-ui/react";
 import { AppContext } from "../context/AppContext";
 import { ApiCall } from "../constants/axios";
 import { searchEndPoint } from "../constants/endpoint";
 import SearchCard from "./SearchCard";
+import spinner from "../assets/loading.gif";
 const SearchDrawer = () => {
   const [search, setSearch] = useState("");
-  const [data,setData] = useState();
-  const {user} = useContext(AppContext);
+  const [data, setData] = useState(null);
+  const { user } = useContext(AppContext);
   const { searchDrawer, setSearchDrawer } = useContext(AppContext);
-  const [loading,setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getData = setTimeout(() => {
-      handleSearch();
-    }, 2000)
+      search?.length > 0 && handleSearch();
+      1;
+    }, 2000);
 
-    return () => clearTimeout(getData)
-  }, [search])
+    return () => clearTimeout(getData);
+  }, [search]);
 
-  const handleSearch = async() => {
-    setLoading(true);  
-    const {data,status} = await ApiCall("GET",searchEndPoint(user?._id,search));
-    console.log(data)
-    if(status == 200){
+  const handleSearch = async () => {
+    setLoading(true);
+    const { data, status } = await ApiCall(
+      "GET",
+      searchEndPoint(user?._id, search)
+    );
+    if (status == 200) {
       setData(data?.users);
     }
     setLoading(false);
-  }
+  };
 
   return (
     <Drawer
       isOpen={searchDrawer}
       placement="right"
-      onClose={() => setSearchDrawer(false)}
-      size={"md"}
+      onClick={() => {
+        setData(null);
+        setSearchDrawer(false);
+      }}
+      size={"sm"}
     >
       <DrawerOverlay />
-      <DrawerContent>
-        <DrawerCloseButton onClick={() => setSearchDrawer(false)} />
-        <DrawerHeader>Search</DrawerHeader>
+      <DrawerContent sx={{ background: "var(--dark-background)" }}>
+        <DrawerCloseButton
+          onClick={() => {
+            setData(null);
+            setSearchDrawer(false);
+          }}
+          sx={{ color: "var(--text)" }}
+        />
+        <DrawerHeader sx={{ color: "var(--text)" }}>Search</DrawerHeader>
 
         <DrawerBody>
           <Input
             placeholder="Search here..."
+            border="solid 1px white"
             onChange={(e) => setSearch(e.target.value)}
+            focusBorderColor="white"
+            color="#ffffff"
+            _placeholder={{
+              color: "white",
+            }}
           />
-          <Flex marginTop="1vh"/>
-          {
-            data && data?.map((item) => {
-              console.log("hello")
-              return(
-                <SearchCard {...item}/>
-              )
-            })
-          }
+          {loading == false && data != null && data?.length == 0 && (
+            <Text color="red" textAlign="center" marginTop="1vh">
+              No User Found
+            </Text>
+          )}
+
+          {loading && (
+            <Flex
+              height="100%"
+              width="100%"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Image src={spinner} height="50px" width="50px" />
+            </Flex>
+          )}
+
+          <Flex marginTop="3vh" />
+          {data &&
+            data?.map((item) => {
+              return <SearchCard {...item} />;
+            })}
         </DrawerBody>
       </DrawerContent>
     </Drawer>

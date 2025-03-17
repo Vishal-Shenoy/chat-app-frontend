@@ -50,40 +50,46 @@ const RequestCard = (props) => {
 
   return (
     <Flex
-      width="95%"
+      width="100%"
       height="80px"
-      background="lightgray"
-      borderRadius="10px"
+      background="var(--card-background)"
+      borderRadius="5px"
       gap="10px"
       marginInline="auto"
       alignItems="center"
       paddingInline="10px"
       ref={(node) => (reference.current = node)}
     >
-      <Flex height="70px" width="70px" background="blue" borderRadius="50%">
-        <Image height="70px" width="70px" borderRadius="50%" />
+      <Flex height="60px" width="60px" borderRadius="50%">
+        <Image height="60px" width="60px" borderRadius="50%" />
       </Flex>
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" color="var(--text)">
         <Text>{userName}</Text>
         <Text>{email}</Text>
       </Flex>
-      <Flex flexDirection="column" gap="5px">
+      <Flex gap="5px">
         <Flex
           height="30px"
           width="60px"
-          background="red"
+          cursor="pointer"
+          background="var(--btn-background)"
           justifyContent="center"
           alignItems="center"
           onClick={() => handleAcceptRequest(mainId)}
+          fontSize="14px"
+          color="#ffffff"
         >
           Accept
         </Flex>
         <Flex
+          cursor="pointer"
+          color="#ffffff"
           height="30px"
           width="60px"
-          background="lightgreen"
+          background="var(--btn-background)"
           justifyContent="center"
           alignItems="center"
+          fontSize="14px"
           onClick={() => handleDeleteRequest(mainId)}
         >
           Reject

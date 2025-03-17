@@ -10,7 +10,8 @@ const UserList = () => {
       flexDirection="column"
       width="25vw"
       height="100%"
-      borderRight="solid lightgray 1px"
+      background="var(--dark-background)"
+      overflowX="scroll"
     >
       {userList?.map((item) => {
         return <UserListCard {...item} />;

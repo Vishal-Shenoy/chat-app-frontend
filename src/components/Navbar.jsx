@@ -20,8 +20,7 @@ const Navbar = () => {
     <Flex
       height="80px"
       width={{ lg: "100%" }}
-      borderBottom="solid 1px lightgray"
-      background="white"
+      background="var(--dark-background)"
     >
       <Flex
         flexDirection="row"
@@ -31,7 +30,7 @@ const Navbar = () => {
         alignItems="center"
         gap="1vw"
       >
-        <Flex gap="2vw" fontSize={{ lg: "30px" }}>
+        <Flex gap="1vw" fontSize={{ lg: "20px" }} color="var(--text)">
           <IoSearch onClick={() => setSearchDrawer(true)} />
           <Flex className="notificationIcon" data-count={notificationCount}>
             <MdOutlineNotifications
@@ -39,18 +38,18 @@ const Navbar = () => {
             />
           </Flex>
         </Flex>
-        <Flex height="50px" width="50px" borderRadius="50%">
+        <Flex height="40px" width="40px" borderRadius="50%">
           <Image
             src={profile}
-            height="50px"
-            width="50px"
+            height="40px"
+            width="40px"
             borderRadius="50%"
             objectFit="cover"
           />
         </Flex>
-        <Flex flexDirection="column">
-          <Text fontSize={{ lg: "18px" }}>{user?.userName}</Text>
-          <Text fontSize={{ lg: "12px" }}>{user?.email}</Text>
+        <Flex flexDirection="column" color="var(--text)">
+          <Text fontSize={{ lg: "16px" }}>{user?.userName}</Text>
+          <Text fontSize={{ lg: "10px" }}>{user?.email}</Text>
         </Flex>
       </Flex>
     </Flex>

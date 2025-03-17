@@ -70,11 +70,19 @@ const SearchCard = (data) => {
   }, []);
 
   return (
-    <Flex paddingInline="1vw" alignItems="center" width="100%" height="80px">
-      <Flex height="70px" width="70px" borderRadius="50%">
-        <Image height="70px" width="70px" borderRadius="50%" />
+    <Flex
+      padding="1vw"
+      alignItems="center"
+      width="100%"
+      height="80px"
+      background="var(--card-background)"
+      borderRadius="10px"
+      marginTop="1vh"
+    >
+      <Flex height="60px" width="60px" borderRadius="50%">
+        <Image height="60px" width="60px" borderRadius="50%" />
       </Flex>
-      <Flex flexDirection="column" marginLeft="2vw">
+      <Flex flexDirection="column" marginLeft="2vw" color="#ffffff">
         <Text>{userName}</Text>
         <Text>{email}</Text>
       </Flex>
@@ -82,9 +90,9 @@ const SearchCard = (data) => {
         marginLeft="auto"
         height="30px"
         width="40px"
-        borderRadius="5px"
-        background={color.BLUE}
+        background="var(--btn-background)"
         color="white"
+        border="solid 1px gray"
         justifyContent="center"
         alignItems="center"
       >

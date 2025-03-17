@@ -20,12 +20,15 @@ const NotificationDrawer = () => {
       isOpen={notificationDrawer}
       placement="right"
       onClose={() => setNotificationDrawer(false)}
-      size="md"
+      size="sm"
     >
       <DrawerOverlay />
-      <DrawerContent>
-        <DrawerCloseButton onClick={() => setNotificationDrawer(false)} />
-        <DrawerHeader>Notification</DrawerHeader>
+      <DrawerContent sx={{ background: "var(--dark-background)" }}>
+        <DrawerCloseButton
+          onClick={() => setNotificationDrawer(false)}
+          sx={{ color: "white" }}
+        />
+        <DrawerHeader color="var(--text)">Notification</DrawerHeader>
 
         <DrawerBody>
           {notification &&

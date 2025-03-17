@@ -19,3 +19,5 @@ export const deleteMyRequestEndPoint = (id) => `${BASE_END_POINT}/request/delete
 export const acceptMyRequestEndPoint = (id) => `${BASE_END_POINT}/request/acceptRequest/${id}`;
 
 export const getMyFriendsEndPoint = (id) => `${BASE_END_POINT}/friend/getFriends/${id}`;
+
+export const getMyMessageEndPoint = (senderId, receiverId) => `${BASE_END_POINT}/message/getMessage/${senderId}/${receiverId}` 
